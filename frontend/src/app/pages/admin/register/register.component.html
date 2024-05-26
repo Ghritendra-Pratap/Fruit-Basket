@@ -1,0 +1,28 @@
+<div>
+    <div class="reg-title">
+        <h1>Register</h1>
+    </div>
+    <button (click)="onAdmin()">admin : {{admin}}</button>
+    <div>
+        <form [formGroup] = "registerForm"  (ngSubmit)="onSubmit()">
+            <div>
+                <input type="text" placeholder="fullname" formControlName="fullname" name="fullname"/>
+            </div>
+            <div>
+                <input type="email" placeholder="email" formControlName="email" name="email"/>
+            </div>
+            <div>
+                <input type="password" placeholder="password" formControlName="password" name="password"/>
+            </div>
+            <div>
+                <input type="password" placeholder="confirm password" formControlName="cpassword" name="cpassword"/>
+            </div>
+            <div>
+                <input type="text" placeholder="address" formControlName="address" name="address"/>
+            </div>
+            <button type="submit">Register</button>
+
+        </form>
+    </div>
+    
+</div>

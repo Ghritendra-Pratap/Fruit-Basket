@@ -1,0 +1,5 @@
+<div>Cart</div>
+<div *ngFor = "let item of cart" >
+    {{item.product.title}}
+</div>
+<button (click)="checkOut()">checkout</button>

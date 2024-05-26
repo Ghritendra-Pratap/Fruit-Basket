@@ -1,0 +1,12 @@
+<div class="">
+    <div class="product-title">Products</div>
+    <button class="goToCartButton" (click)="goToCart()"> Cart</button>
+    <div class="product-list" *ngFor = "let product of Products">
+        <div class="img"></div>
+        <div class="title">{{product.title}}</div>
+        <div class="mrprice">{{product.mrprice}}</div>
+        <div class="price">{{product.price}}</div>
+        <button class="addToCart" (click)="addToCart(product._id)">add To Cart</button>
+        <button class="buyNow">buy now</button>
+    </div>
+</div>

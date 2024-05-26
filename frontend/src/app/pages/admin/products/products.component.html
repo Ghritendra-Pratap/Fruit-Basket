@@ -1,0 +1,39 @@
+<div class="">
+    <div class="product-title">Products</div>
+    <div class="product-list" *ngFor = "let product of Products">
+        <div class="img"></div>
+        <div class="title">{{product.title}}</div>
+        <div class="mrprice">{{product.mrprice}}</div>
+        <div class="price">{{product.price}}</div>
+        <button class="editProduct btn btn-primary" (click)="updateProduct(product)">Edit</button>&nbsp;
+        <button class="deleteProduct btn btn-danger" (click)="removeProduct(product._id)">Delete</button>
+    </div>
+</div>
+
+<div class="new-product">
+    <div>
+        <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+            <div>
+                <input type="text" placeholder="title" formControlName="title" name="title"/>
+            </div>
+            <div>
+                <input type="text" placeholder="category" formControlName="category" name="category"/>
+            </div>
+            <div>
+                <input type="number" placeholder="mrp" formControlName="mrprice" name="mrprice"/>
+            </div>
+            <div>
+                <input type="number" placeholder="" formControlName="price" name="price"/>
+            </div>
+            <button type="submit" >{{ modal ? 'Update Product' : 'Add Product' }}</button>
+
+        </form>
+    </div>
+</div>
+
+
+
+
+<div class="orders">
+    
+</div>
