@@ -25,11 +25,11 @@ app.use("/api/cart" , cartRoute)
 app.use("/api/category" , categoryRoute)
 app.use("/api/user" , userRoute)
 
-// app.use(express.static(path.join(__dirname, '..', 'frontend', 'dist')));
+app.use(express.static(path.join(__dirname, '..', 'frontend', 'dist')));
 
-// app.get("*", (req, res) => {
-//     res.sendFile(path.join(__dirname, '..', 'frontend', 'dist', 'frontend', 'index.html'));
-// });
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'frontend', 'dist', 'frontend', 'index.html'));
+});
 
 
 app.listen(5000 , ()=>{
