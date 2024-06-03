@@ -12,11 +12,12 @@ const createProduct = async(req,res)=>{
         return res.status(404).json("Fill all the required product details")
     }
     const categoryy = await Category.findOne({category:category})
+    console.log(categoryy)
     try{
         const newProduct = new Product({
             title,
             image:"",
-            category:categoryy,
+            category,
             mrprice,
             price,
             discount:"",
@@ -47,10 +48,11 @@ const updateProduct = async(req,res)=>{
     const productId = req.params.id;
   const { title, category, mrprice, price } = req.body;
   const categoryy = await Category.findOne({category:category})
+  console.log(categoryy)
 
   try {
     // Update product by ID
-    const updateResult = await Product.updateOne({ _id: productId }, { title, category: categoryy, mrprice, price });
+    const updateResult = await Product.updateOne({ _id: productId }, { title, category, mrprice, price });
 
     // Check if product was found and updated
     if (updateResult.nModified === 0) {

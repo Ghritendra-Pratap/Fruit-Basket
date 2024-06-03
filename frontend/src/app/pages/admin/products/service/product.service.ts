@@ -12,19 +12,27 @@ export class ProductService {
   });
 
   addProduct(product:any){
-    return this.http.post("api/product" , product)
+    return this.http.post("/api/product" , product,{headers : this.headers})
   }
 
   getProducts(){
-    return this.http.get("api/product")
+    return this.http.get("/api/product",{headers : this.headers})
   }
 
-  removeProduct(){
-
+  removeProduct(prodId:string){
+    return this.http.delete("/api/product/"+ prodId,{headers : this.headers})
   }
 
-  updateProduct(){
-    
+  updateProduct(prodId:string,product:any){
+    return this.http.put("/api/product/"+prodId, product, {headers : this.headers})
+  }
+
+  getallCategories(){
+    return this.http.get("/api/category" , {headers : this.headers})
+}
+
+  getCategoryName(catId :string){
+    return this.http.get("/api/category/"+catId , {headers : this.headers})
   }
 
   

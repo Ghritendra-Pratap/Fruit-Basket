@@ -6,18 +6,21 @@
     <div class="login-contents">
         <form [formGroup] = "loginForm"  (ngSubmit) = "onSubmit()">
             <div class="login-content">
-                <label for="email">Email: </label>
-                <input type="email" name="email" formControlName = "email" placeholder="email" class="inputs"/>
+               
+                <input type="email" name="email" formControlName = "email" placeholder="email" class="inputs" required/>
             </div>
             <div class="login-content">
-                 <label for="password">Password: </label>  
-                 <input type="password" placeholder="password" formControlName = "password" name="password" class="inputs"/>
+                  
+                 <input type="password" placeholder="password" formControlName = "password" name="password" class="inputs" required/>
             </div>
-            <button id="login-submit" type="submit">submit</button>
+            <div style="display: flex; justify-content:center; margin-top:4px">
+                <button id="login-submit" type="submit">Login</button>
+            </div>
+            
         </form>
 
-        <div>
-            <span>Create a new account</span>&nbsp;<span (click)="navToRegister()">Register</span>
+        <div style="display: flex; justify-content:center; margin-top:4px">
+            <span>Create a new account? </span>&nbsp;<span (click)="navToRegister()" class="navtoreg" style="color:blue; cursor:pointer">Register here</span>
         </div>
         
     </div>

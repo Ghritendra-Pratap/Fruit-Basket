@@ -1,0 +1,46 @@
+.login-page{  
+  background-color: rgb(242, 235, 248 , 0.7);
+  position: absolute; /* Position the div relative to its closest positioned ancestor */
+  top: 50%; /* Move the top of the div to the middle of the parent container */
+  left: 50%; /* Move the left of the div to the middle of the parent container */
+  transform: translate(-50%, -50%);
+  padding: 100px 70px;
+  border-radius: 20px;
+}
+
+.login-title{
+    display: flex; 
+  justify-content: center; /* Center horizontally */
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.login-contents{
+    align-content: center;
+}
+.login-content{
+    margin: 10px 2px;
+}
+
+.inputs{
+  border-radius: 2px;
+  border: transparent;
+  padding: 10px ;
+  width: 300px;
+  margin: 5px;
+  outline: none; 
+}
+
+#login-submit{
+    cursor: pointer;
+    border: transparent;
+    border-radius: 2px;
+    background-color: rgb(54, 92, 245);
+    padding: 4px 20px;
+    color: white;
+    margin-bottom: 3px;
+
+}
+

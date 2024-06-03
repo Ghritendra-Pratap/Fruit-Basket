@@ -1,0 +1,33 @@
+.products{
+    
+}
+
+.product-title{
+   margin-top: 20px;
+   color: rgb(169, 89, 244);
+   font-weight: bold;
+   font-size: 20px;
+}
+
+.filter-input{
+    width:180px;
+    padding: 5px 20px;
+    background-color: aliceblue;
+    border: transparent;
+
+}
+
+.product-list{
+    display: flex;
+    grid-gap: 40px;
+    flex-wrap: wrap;
+    
+    
+ 
+}
+
+.list-item{
+    height: 320px;
+    width: 240px;
+    margin-bottom: 50px;
+}

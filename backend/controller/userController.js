@@ -34,6 +34,8 @@ const deleteUser = async(req,res)=>{
    
 }
 
+
+
 const getallOrders = async(req,res)=>{
     const orders = await Order.find({customerId : req.params.id})
     res.status(200).json(orders)
@@ -44,4 +46,4 @@ const getOrder =  async(req,res)=>{
     res.status(200).json(order)
 }
 
-module.exports = {getallUsers , getuser , getOrder , getOrders , updateUser, deleteUser}
+module.exports = {getallUsers , getuser , getOrder , getallOrders , updateUser, deleteUser }

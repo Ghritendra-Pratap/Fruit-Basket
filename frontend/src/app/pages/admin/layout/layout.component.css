@@ -1,0 +1,31 @@
+.layout{
+    background-color: rgb(242, 235, 248 , 0.7);
+  position: absolute; /* Position the div relative to its closest positioned ancestor */
+  top: 50%; /* Move the top of the div to the middle of the parent container */
+  left: 50%; /* Move the left of the div to the middle of the parent container */
+  transform: translate(-50%, -50%);
+  padding: 100px 70px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  grid-gap: 40px;
+  justify-content: center;
+}
+
+.layout-item{
+    height: 200px;
+    width: 200px;
+    background-color: rgb(161, 94, 249);
+    text-align: center;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.layout-item:hover{
+    background-color: rgb(123, 27, 250);
+    padding: 10px;
+}
+
+
+

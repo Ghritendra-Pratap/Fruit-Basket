@@ -10,18 +10,28 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class ProductsComponent implements OnInit{
 
-  constructor(private prodService : ProductService){}
+  constructor(private prodService : ProductService){
+    
+  }
 
-  product:any={};
+ 
   Products:any;
-  modal : boolean= false
+  modal : boolean= false;
+  newProductSlide: boolean =false
+  categories:any=[];
+  category:string='';
+  filteredProducts:any;
+  maxPrice:any;
+  minPrice:any;
+  prodId:any;
+  
 
   
   productForm :FormGroup = new FormGroup({
-    title:new FormControl(this.product ? this.product.title : '', [Validators.required]),
-    category:new FormControl(this.product ? this.product.category : '', [Validators.required]),
-    mrprice:new FormControl(this.product ? this.product.mrprice : '', [Validators.required]),
-    price:new FormControl(this.product ? this.product.price : '', [Validators.required]),
+    title:new FormControl('', [Validators.required]),
+    category:new FormControl( '', [Validators.required]),
+    mrprice:new FormControl('', [Validators.required]),
+    price:new FormControl('', [Validators.required]),
   })
 
   headers = new HttpHeaders({
@@ -30,38 +40,86 @@ export class ProductsComponent implements OnInit{
 
   ngOnInit(): void {
     this.getProducts()
+    this.getCategories()
     
   }
 
-  onSubmit(){
-    this.prodService.addProduct(this.productForm.value).subscribe(res=>{
+  getCategories(){
+    this.prodService.getallCategories().subscribe(res=>{
       console.log(res)
+      this.categories = res
     })
+  }
+
+
+  newSlide(){
+    this.newProductSlide = !this.newProductSlide
+  }
+
+  onSubmit(){
+    
+    if(this.prodId){
+      this.prodService.updateProduct(this.prodId,this.productForm.value).subscribe()
+      
+      this.prodId='';
+      
+      
+    }
+    else{
+      this.filteredProducts.push(this.productForm.value)
+      this.prodService.addProduct(this.productForm.value).subscribe(res=>{
+        console.log(res)
+      })
+    }
+    this.productForm.reset()
+    this.newSlide()
+    
+    
   }
   
   getProducts(){
     this.prodService.getProducts().subscribe(res=>{
       this.Products = res
+      this.filteredProducts = this.Products;
       console.log(this.Products)
     })
   }
 
-  updateProduct(product:any){
-    this.product = product
-    this.productForm.patchValue({
-      title: this.product.title,
-      category: this.product.category,
-      mrprice: this.product.mrprice,
-      price: this.product.price
-    });
-    console.log(this.productForm.value)
-    this.modal = !this.modal
-    if(this.modal == false){
-      this.productForm.reset();
-    }
+  applyFilters(){
+    
+    this.filteredProducts = this.Products.filter((product:any) => 
+      (!this.category || product.category === this.category) &&
+      (!this.minPrice || product.price >= this.minPrice) &&
+      (!this.maxPrice || product.price <= this.maxPrice)
+    );
   }
 
-  removeProduct(prodId:string){
-    console.log(prodId)
+  updateProduct(product:any , index : number){
+    this.newSlide()
+    this.prodId = product._id
+        this.productForm.patchValue({
+          title: product.title,
+          category: product.category,
+          mrprice: product.mrprice,
+          price: product.price
+        });
+        this.modal = !this.modal
+        if(this.modal == false){
+          this.productForm.reset();
+        }
+      
+    
+    
   }
+
+  removeProduct(prodId:string, index: number){
+    this.filteredProducts.splice(index , 1)
+    this.prodService.removeProduct(prodId).subscribe(res=>{
+      console.log(res)
+      
+    }
+    
+    )
+  }
+
 }

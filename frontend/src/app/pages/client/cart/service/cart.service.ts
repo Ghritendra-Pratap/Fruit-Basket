@@ -11,22 +11,30 @@ export class CartService {
     Authorization: `${localStorage.getItem("authToken")}`,
   });
 
-  addToCart(prodId:string, userId:string){
-    console.log(userId)
-    return this.http.post("api/cart/"+userId, prodId, {headers:this.headers})
+  getItemsInCart(id:string){
+    return this.http.get("/api/cart/items/"+id , {headers: this.headers})
+  }
+
+  addToCart(prodId:string, userId:string, quantity:number =1){
+    console.log(prodId)
+    return this.http.post("/api/cart/"+userId, {prodId,quantity}, {headers:this.headers})
   }
 
   goToCart(userId:string){
     console.log(userId)
-    return this.http.get("api/cart/"+userId , {headers:this.headers})
+    return this.http.get("/api/cart/"+userId , {headers:this.headers})
   }
+
+
+
+
 
   deleteItemFromCart(){
     
   }
 
   postOrder(products: any , address:string , userId:string){
-    return this.http.post("api/cart/order" , {products, address , customerId : userId}, {headers:this.headers})
+    return this.http.post("/api/cart/order" , {products, address , customerId : userId}, {headers:this.headers})
   
   }
 }

@@ -1,0 +1,20 @@
+.filter{
+    background-color:rgb(123, 50, 4); font-size:large ;color:white; padding: 15px 50px ; border-radius:5px
+}
+
+.product-list{
+    padding-bottom: 40px;
+    background-color: rgb(241, 202, 139);
+    padding: 40px;
+
+}
+
+.list-item{
+    margin: 20px 0px 60px 0px;
+    display: inline-block;
+    margin-right: 50px;
+    justify-content: space-around;
+    cursor: pointer;
+    
+    
+}

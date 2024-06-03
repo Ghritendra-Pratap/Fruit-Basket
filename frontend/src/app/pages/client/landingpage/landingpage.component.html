@@ -1,0 +1,80 @@
+<div class="landing container" style="">
+    <br/>
+    <div style="">
+      <div id="carouselExample" class="carousel slide" style="">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="https://picsum.photos/id/100/900/500" class=" w-100" alt="..." style="height: 200px;">
+          </div>
+          <div class="carousel-item">
+            <img src="https://picsum.photos/id/944/900/500" class="d-block w-100" alt="..." style="height: 200px;">
+          </div>
+          <div class="carousel-item">
+            <img src="https://picsum.photos/id/94/900/500" class="d-block w-100" alt="..." style="height: 200px;">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+    
+
+    <div class="filters-category " style=" margin-top : 20px; padding: 5px 20px ; justify-content:space-around ; display:flex">
+        <span  (click)="updateCategory('seasonal')"  class="filter" > seasonal</span>
+        <span  (click)="updateCategory('imported')" class="filter" >  imported</span>
+        <span  (click)="updateCategory('local')"  class="filter" > local</span>
+        <span  (click)="updateCategory('dry')" class="filter" > dryfruit</span>
+        
+    </div>
+<!-- ---------------filtered product----------- -->
+
+    <div class="fruit-collection" style="margin-top: 20px;">
+      
+    <div class="product-list" *ngIf = 'category'>
+      <h1 style="text-decoration: underline; text-align:center; color:rgb(123, 50, 4)">{{category}} fruit</h1><br/>
+      <div class="list-item" *ngFor="let product of filteredProducts" >
+        <app-card [product]="product"></app-card>
+      </div>
+    </div>
+
+    <!-- ----------- ----------------collection of product--------------------------->
+    <div class="product-list" style="margin: 20px 0px; " >
+        <h1 style="text-decoration: underline; text-align:center;color:rgb(123, 50, 4)">seasonal fruit</h1>
+        <div class="list-item" *ngFor="let product of seasonalProducts" >
+          <app-card [product]="product"></app-card>
+        </div>
+        
+
+        <h1 style="text-decoration: underline; text-align:center;color:rgb(123, 50, 4)">Dry fruit</h1>
+        <div class="list-item" *ngFor="let product of dryFruitProducts" >
+          <app-card [product]="product"></app-card>
+        </div>
+        
+
+        <h1 style="text-decoration: underline; text-align:center;color:rgb(123, 50, 4)">Imported fruit</h1><br>
+        <div class="list-item"  *ngFor="let product of importedProducts" >
+            <app-card [product]="product"></app-card>
+        </div>
+
+        <h1 style="text-decoration: underline; text-align:center ; color:rgb(123, 50, 4)">Local fruit</h1>
+        <div class="list-item" *ngFor="let product of localProducts" >
+          <app-card [product]="product"></app-card>
+        </div>
+
+        <h1 style="text-decoration: underline; text-align:center ; color:rgb(123, 50, 4)">All fruit</h1>
+        <div class="list-item" *ngFor="let product of Products" >
+          <app-card [product]="product"></app-card>
+        </div>
+    </div>
+
+    
+
+
+    
+</div>

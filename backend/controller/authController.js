@@ -44,6 +44,7 @@ const signup=async(req,res)=>{
 
 const signupAdmin =async(req,res)=>{
     const {fullname , email ,password, cpassword, address } = req.body
+    console.log(fullname)
 
     try{
         const userExist = await User.findOne({email})
@@ -69,7 +70,7 @@ const signupAdmin =async(req,res)=>{
         address
     })
 
-    const token = jwt.sign({id:newUser._id, isAdmin: user.isAdmin } , `${process.env.JWTKEY}`,{expiresIn:'15d'})
+    const token = jwt.sign({id:newUser._id, isAdmin: newUser.isAdmin } , `${process.env.JWTKEY}`,{expiresIn:'15d'})
     await newUser.save()
     return res.status(201).json({id:newUser._id, address:address , token:token});
 
@@ -82,14 +83,16 @@ const signupAdmin =async(req,res)=>{
 }
 
 const login = async(req,res)=>{
-    console.log(req.body)
     const {email , password} = req.body;
-
+    console.log(email)
     try{
         const user = await User.findOne({email : email})
+        console.log(user)
     if(user){
+        console.log(user)
         const isPassword = await bcrypt.compare( password, user.password )
         if(isPassword){
+            console.log("hello gutys")
             const token = jwt.sign({id:user._id , isAdmin: user.isAdmin } , `${process.env.JWTTOKEN}`,{expiresIn:'15d'})
             res.status(200).json({id:user._id ,isAdmin: user.isAdmin,  address:user.address,token:token})
         }

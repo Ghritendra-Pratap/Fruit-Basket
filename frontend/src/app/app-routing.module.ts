@@ -7,9 +7,11 @@ import { LayoutComponent } from './pages/admin/layout/layout.component';
 import { HomeComponent } from './pages/client/home/home.component';
 import { RegisterComponent } from './pages/admin/register/register.component';
 import { CartComponent } from './pages/client/cart/cart.component';
+import { LandingpageComponent } from './pages/client/landingpage/landingpage.component';
 
 const routes: Routes = [
-  {path:"", redirectTo:"login" , pathMatch:'full'},
+  {path:"", redirectTo:"landingpage" , pathMatch:'full'},
+  {path:"landingpage", component:LandingpageComponent },
   {path:"login", component:LoginComponent},
   {path:"layout", component:LayoutComponent},
   {path:"products" , component:ProductsComponent},

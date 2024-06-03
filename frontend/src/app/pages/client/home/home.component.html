@@ -1,12 +1,47 @@
-<div class="">
-    <div class="product-title">Products</div>
-    <button class="goToCartButton" (click)="goToCart()"> Cart</button>
-    <div class="product-list" *ngFor = "let product of Products">
-        <div class="img"></div>
-        <div class="title">{{product.title}}</div>
-        <div class="mrprice">{{product.mrprice}}</div>
-        <div class="price">{{product.price}}</div>
-        <button class="addToCart" (click)="addToCart(product._id)">add To Cart</button>
-        <button class="buyNow">buy now</button>
+<div class="products container">
+  <div class="product-title">
+    Products
+  </div>
+  <hr />
+  <div class="product-wrapper row col-12" style="background-color: antiquewhite;  padding-bottom:10px">
+    <h3 style="font-weight: bold;">Filters</h3>
+    <div class="col-3 ">
+      <select [(ngModel)]="category" (change)="applyFilters()" class="filter-input">
+        <option value="" >Allcategory</option>
+        <option *ngFor="let category of categories" [value]="category.category">{{ category.category }}</option>
+      </select>
     </div>
+    <div class="col-3">
+      <input type="number" [(ngModel)]="minPrice" (change)="applyFilters()" placeholder="Min Price" class="filter-input">
+    </div>
+    <div class="col-3">
+      <input type="number" [(ngModel)]="maxPrice" (change)="applyFilters()" placeholder="Max Price" class="filter-input">
+    </div>
+    
+  </div>
+  <br/>
+
+
+  <div class="product-list" >
+    <div class="list-item" *ngFor="let product of filteredProducts" >
+      <mat-card class="example-card">
+        <img
+          mat-card-image
+          src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+          alt="Photo of a Shiba Inu"
+        />
+        <mat-card-content>
+            <mat-card-title>{{ product.title }}</mat-card-title>
+            <mat-card-subtitle style="text-decoration: line-through;">Rs.{{ product.mrprice }}</mat-card-subtitle>
+            <mat-card-subtitle>Rs.{{ product.price }}</mat-card-subtitle>      
+        </mat-card-content>
+        <mat-card-actions style="display: flex; justify-content:space-between">
+          <button class="addToCart btn btn-primary" (click)="addToCart(product._id)" style="font-size:100">
+            Add to cart
+          </button>
+          <button class="buyNow btn btn-primary ">Buy Now</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
 </div>

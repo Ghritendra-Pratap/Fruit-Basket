@@ -15,6 +15,8 @@ export class CartComponent implements OnInit{
     private cartService : CartService
   ){}
 
+  totalmrp:number=0;
+  totalPrice:number=0;
   ngOnInit(): void {
     this.getItems()
   }
@@ -28,7 +30,15 @@ export class CartComponent implements OnInit{
   getItems(){
     this.cartService.goToCart(this.userId).subscribe(res=>{
       this.cart = res
-      console.log(this.userAddress[0])
+      this.cart.forEach((item: any)=>{
+        let product = item.product
+        let quantity = item.quantity
+        this.totalmrp = this.totalmrp + (product.mrprice * quantity)
+        this.totalPrice += (product.price * quantity)
+        
+      })
+      console.log(this.totalmrp)
+      console.log(this.cart)
     })
   }
 

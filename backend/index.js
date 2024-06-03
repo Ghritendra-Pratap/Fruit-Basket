@@ -5,6 +5,7 @@ const authRoute = require('./routes/authRoute')
 const productRoute = require('./routes/productRoute')
 const cartRoute = require('./routes/cartRoute')
 const categoryRoute =require('./routes/categoryRoute')
+const userRoute =require('./routes/userRoute')
 const dotenv = require('dotenv')
 const cors = require('cors')
 const path = require('path');
@@ -22,12 +23,13 @@ app.use("/api/auth" , authRoute)
 app.use("/api/product" , productRoute)
 app.use("/api/cart" , cartRoute)
 app.use("/api/category" , categoryRoute)
+app.use("/api/user" , userRoute)
 
-app.use(express.static(path.join(__dirname, '..', 'frontend', 'dist')));
+// app.use(express.static(path.join(__dirname, '..', 'frontend', 'dist')));
 
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'frontend', 'dist', 'frontend', 'index.html'));
-});
+// app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname, '..', 'frontend', 'dist', 'frontend', 'index.html'));
+// });
 
 
 app.listen(5000 , ()=>{

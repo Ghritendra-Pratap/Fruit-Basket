@@ -1,2 +1,66 @@
+<div>
+
+
+<header style="background-color: rgb(123, 50, 4) ; color:white ; padding: 25px 0px ; display:flex; ">
+    <div class="header" style="margin: 0px 50px;padding: 5px ; flex:4">
+        <div class="title"style="font-size: 30px;">Fruit Basket</div>
+    </div>
+    <div class="search" style="margin: 0px 50px; flex:2">
+        <input type="text" class="searchbar" style="padding: 5px 10px; width:80%; margin-right:50px; border-radius:5px; border:transparent; outline:none"  placeholder="search fruits..."/>
+    </div>
+    <div class="cart " style="">
+        <span style="color:rgb(123, 50, 4); position:relative; left:18px; font-weight:900">2</span>
+    <i class="bi bi-bag-fill" style="font-size: 28px;" (click)="goToCart()"></i>
+    </div>
+    <div class="avatar" >
+        <i class="bi bi-person-circle mx-5" style="font-size: 30px;" (click)="login()"></i>
+    </div>
+    <!-- <mat-toolbar style="background-color: rgb(123, 50, 4) ; color:white ; padding: 4px 0px">
+        
+        <mat-t style="display: flex; ">
+            <span style="cursor: pointer; margin-left:20px; flex:3">Fruit Basket</span>
+            <span><input class="example-icon" type = "text" placeholder="search..." style="width:100%; border: transparent; outline:none; border-radius:20px; padding-left: 10px; cursor:pointer; flex:3"/></span>
+            <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon" matBadge="2" matBadgeColor="warn" (click)="goToCart()" style="cursor:pointer; flex: 3; "></mat-icon><i class="bi bi-bag-fill"></i>
+            <mat-icon class="example-icon" aria-hidden="false" (click)="login()" aria-label="Example delete icon" style="flex: 3;"></mat-icon><i class="bi bi-person-circle mx-5"></i>
+          </mat-toolbar-row>
+      </mat-toolbar> -->
+</header>
+
+<!-- <app-landingpage></app-landingpage> -->
 
 <router-outlet></router-outlet>
+<footer style="height: 300px; background-color:rgb(146, 88, 51); color:white ;  ">
+    <div class="footer container col-12 " style=" padding-top:50px; padding-left:50px">
+        <div class="row " style="text-decoration: underline;">
+            <div class="logo col-3 " style="margin-top:40px">
+                <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" style="width: 100px; height:100px"/>
+                <br/>
+                <h2>Fruit Basket</h2>
+            </div>
+            <div class="quicklink col-3" style="display:grid">
+                <span>quick link</span>
+                <div>
+                    <span>Let know about us</span><br/>
+                    <span>Visit store</span><br/>
+                    <span>Lets connect</span><br/>
+                    <span>know our process</span>
+                </div>
+                
+            </div>
+            <div class="sitelink col-3" style="display:grid">
+                <span>site link</span>
+                <div>
+                    <span>Privacy policy</span><br/>
+                    <span>Return/Refund policy</span><br/>
+                    <span>Terms and Condition</span><br/>
+                    <span>Shipping policy</span>
+                </div>
+                
+            </div>
+            <div class="contacts col-3">contact</div>
+        </div>
+        
+    </div>
+    
+</footer>
+</div>

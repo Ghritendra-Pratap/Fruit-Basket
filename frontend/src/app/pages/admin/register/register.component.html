@@ -1,28 +1,37 @@
-<div>
+<div class="register">
     <div class="reg-title">
-        <h1>Register</h1>
+        {{admin ? "Admin-Register" :"Register"}}
     </div>
-    <button (click)="onAdmin()">admin : {{admin}}</button>
-    <div>
+    <button (click)="onAdmin()">{{admin ? "Client" :"Admin"}}</button>
+    <div class="registerform">
         <form [formGroup] = "registerForm"  (ngSubmit)="onSubmit()">
             <div>
-                <input type="text" placeholder="fullname" formControlName="fullname" name="fullname"/>
+                <input type="text" placeholder="fullname" formControlName="fullname" name="fullname" class="inputs" required/>
             </div>
             <div>
-                <input type="email" placeholder="email" formControlName="email" name="email"/>
+                <input type="email" placeholder="email" formControlName="email" name="email" class="inputs" required/>
             </div>
             <div>
-                <input type="password" placeholder="password" formControlName="password" name="password"/>
+                <input type="password" placeholder="password" formControlName="password" name="password" class="inputs" required/>
             </div>
             <div>
-                <input type="password" placeholder="confirm password" formControlName="cpassword" name="cpassword"/>
+                <input type="password" placeholder="confirm password" formControlName="cpassword" name="cpassword" class="inputs" required/>
             </div>
             <div>
-                <input type="text" placeholder="address" formControlName="address" name="address"/>
+                <input type="text" placeholder="address" formControlName="address" name="address" class="inputs" required/>
             </div>
-            <button type="submit">Register</button>
-
+            <div style="display: flex; justify-content:center; margin-top:4px">
+                <button id="reg-submit" type="submit">Register</button>
+            </div>
+            
         </form>
+
+        <div style="display: flex; justify-content:center; margin-top:4px">
+            <span>Already have an account? </span>&nbsp;<span (click)="navToLogin()" class="navtoreg" style="color:blue; cursor:pointer">Login here</span>
+        </div>
+            
+
+        
     </div>
     
 </div>

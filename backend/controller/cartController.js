@@ -6,20 +6,21 @@ const User = require("../model/User")
 
 
 const addToCart = async(req,res)=>{
+    console.log(req.body)
+    const {prodId , quantity} =req.body
     try {
-        let productId = req.body.id
-        let quantity = 1
         let user = await User.findById(req.params.id)
         
         const existingProductIndex = Array.isArray(user.cart) 
-        ? user.cart.findIndex(item => item.product._id.equals(productId)) 
+        ? user.cart.findIndex(item => item.product._id.equals(prodId)) 
         : -1;
 
         if (existingProductIndex !== -1) {
             user.cart[existingProductIndex].quantity += quantity;
         } else {
-            user.cart.push({ product: productId, quantity });
+            user.cart.push({ product: prodId, quantity });
         }
+        console.log(user.cart)
         await user.save();
         return res.status(200).json("added to cart");
     }catch (error) {
@@ -65,6 +66,21 @@ const deleteItem= async(req,res)=>{
       }
     
 }
+
+const getItemsInCart=async(req,res)=>{
+    try {
+        const user = await User.findById(req.params.id);
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+        const cartLength = user.cart.length;
+        res.json({ cartLength });
+    } catch (err) {
+        console.log("error in getItemsInCart:", err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+}
+
 const deleteItems=async(req,res)=>{
     try {
         await User.updateOne({_id: req.user.id}, {$pull: {cart: {}}});
@@ -83,4 +99,4 @@ const createRole = async(req,res)=>{
     }  
 }
 
-module.exports = {createRole, addToCart , goToCart, createOrder, deleteItems , deleteItem}
+module.exports = {createRole, addToCart , goToCart, createOrder, deleteItems , deleteItem, getItemsInCart}

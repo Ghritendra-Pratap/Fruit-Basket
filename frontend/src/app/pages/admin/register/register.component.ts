@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RegisterService } from './service/register.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +10,9 @@ import { RegisterService } from './service/register.service';
 })
 export class RegisterComponent {
 
-  constructor(private registerService:RegisterService){}
+  constructor(private registerService:RegisterService, 
+    private router:Router
+  ){}
 
   registerForm: FormGroup = new FormGroup({
     fullname: new FormControl("", [Validators.required]),
@@ -30,6 +33,10 @@ export class RegisterComponent {
   }
   onAdmin(){
     this.admin = !this.admin
+  }
+
+  navToLogin(){
+    this.router.navigateByUrl("login")
   }
 
 

@@ -1,39 +1,136 @@
-<div class="">
-    <div class="product-title">Products</div>
-    <div class="product-list" *ngFor = "let product of Products">
-        <div class="img"></div>
-        <div class="title">{{product.title}}</div>
-        <div class="mrprice">{{product.mrprice}}</div>
-        <div class="price">{{product.price}}</div>
-        <button class="editProduct btn btn-primary" (click)="updateProduct(product)">Edit</button>&nbsp;
-        <button class="deleteProduct btn btn-danger" (click)="removeProduct(product._id)">Delete</button>
+<div class="product  container " style="">
+
+
+  <div
+    class="product-title"
+    style="color: blueviolet; margin-top: 20px; display: flex"
+  >
+    <h2 style="flex: auto; position: relative; top: 12px">Products</h2>
+    <button
+      mat-fab
+      extended
+      style="width: 120px; font-size: 10px"
+      (click)="newSlide()"
+    >
+      <mat-icon>add</mat-icon>
+      Add Product
+    </button>
+  </div>
+  <hr />
+
+  <!-- <div class="product-wrapper row col-7">
+    <h3>Filters</h3>
+    <div class="col-2">
+      <select [(ngModel)]="category" (change)="applyFilters()">
+        <option value="" >Allcategory</option>
+        <option *ngFor="let category of categories" [value]="category.category">{{ category.category }}</option>
+      </select>
     </div>
-</div>
-
-<div class="new-product">
-    <div>
-        <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
-            <div>
-                <input type="text" placeholder="title" formControlName="title" name="title"/>
-            </div>
-            <div>
-                <input type="text" placeholder="category" formControlName="category" name="category"/>
-            </div>
-            <div>
-                <input type="number" placeholder="mrp" formControlName="mrprice" name="mrprice"/>
-            </div>
-            <div>
-                <input type="number" placeholder="" formControlName="price" name="price"/>
-            </div>
-            <button type="submit" >{{ modal ? 'Update Product' : 'Add Product' }}</button>
-
-        </form>
+    <div class="col-2">
+      <input type="number" [(ngModel)]="minPrice" (change)="applyFilters()" placeholder="Min Price">
     </div>
-</div>
-
-
-
-
-<div class="orders">
+    <div class="col-2">
+      <input type="number" [(ngModel)]="maxPrice" (change)="applyFilters()" placeholder="Max Price">
+    </div>
     
+    
+  </div> -->
+  <div class="product-wrapper row mx-4">
+    <h3 style="color: blueviolet; margin-top: 10px; text-decoration: dotted">
+        Recently added
+      </h3><br/>
+    <div
+      [ngClass]="
+        newProductSlide ? 'product-list col-7' : ' product-list col-12'
+      "
+    >
+    
+      <div class="list-item row col-12" *ngFor="let product of filteredProducts; index as i">
+        <mat-card class="example-card">
+          <img
+            mat-card-image
+            src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+            alt="Photo of a Shiba Inu"
+          />
+          <mat-card-content>
+            <mat-card-title>{{ product.title }}</mat-card-title>
+            <mat-card-subtitle style="text-decoration: line-through"
+              >Rs.{{ product.mrprice }}</mat-card-subtitle
+            >
+            <mat-card-subtitle>Rs.{{ product.price }}</mat-card-subtitle>
+          </mat-card-content>
+          <mat-card-actions
+            style="display: flex; justify-content: space-between"
+          >
+            <button
+              class="editProduct btn btn-primary"
+              (click)="updateProduct(product , i)"
+            >
+              Edit
+            </button>
+            <button
+              class="deleteProduct btn btn-danger"
+              (click)="removeProduct(product._id , i)"
+            >
+              Delete
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+
+
+  <!-- --------------------------------product form------------------------------------------------------ -->
+
+    <div class="new-product col-4" *ngIf="newProductSlide">
+        
+        <div class="product-form">
+            <h3 style="color: blueviolet; margin-top: 10px; text-decoration: dotted">
+                Product details
+              </h3>
+          <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+            <div>
+              <input class="prod-inputs"
+                type="text"
+                placeholder="title"
+                formControlName="title"
+                name="title"
+                required
+              />
+            </div>
+
+              <select class="prod-inputs" formControlName="category" placeholder="category" required>
+                  <option disabled selected> select a category</option>
+                  <option *ngFor = "let category of categories" [ngValue]="category.category">{{category.category}}</option>
+              </select>
+
+            <div>
+              <input class="prod-inputs"
+                type="number"
+                placeholder="mrp"
+                formControlName="mrprice"
+                name="mrprice"
+                required
+              />
+            </div>
+            <div>
+              <input class="prod-inputs"
+                type="number"
+                placeholder="price"
+                formControlName="price"
+                name="price"
+                required
+              />
+            </div>
+            <button class="btn btn-primary" type="submit " style="margin-top: 20px; ">
+              {{ modal ? "Update Product" : "Add Product" }}
+            </button>
+          </form>
+        </div>
+      </div>
+  </div>
 </div>
+
+
+
+<div class="orders"></div>

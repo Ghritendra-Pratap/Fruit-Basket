@@ -14,15 +14,19 @@ export class LoginService {
   userAddress: string[]=[];
   userId : string="";
   login(user:any){
-    return this.http.post("api/auth/login", user).subscribe(res=>{
+    return this.http.post("/api/auth/login", user).subscribe(res=>{
       if(res){
+        console.log(res)
         localStorage.setItem('authToken',(res as any).token );
         this.userId = (res as any).id
         this.userAddress= (res as any).address
-        if((res as any).isAdmin)
-          this.router.navigateByUrl("layout")
+        if((res as any).isAdmin){
+          console.log("admin")
+          this.router.navigateByUrl("/products")
+        }
+  
         else
-          this.router.navigateByUrl("home")
+          this.router.navigateByUrl("")
       }
 })
   }
